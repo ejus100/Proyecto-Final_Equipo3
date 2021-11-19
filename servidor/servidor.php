@@ -1,18 +1,18 @@
 <?php
 include "conexion.php";
-include "utils.php";
+include "parametros.php";
 
 
 $dbConn =  connect($db);
 
 /*
-  listar todos los posts o solo uno
+  Aqui listamos todos los datos
  */
 if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {
     if (isset($_GET['iddenuncia']))
     {
-      //Mostrar un post
+      //Mostramos un post
       $sql = $dbConn->prepare("SELECT * FROM denuncia where iddenuncia=:iddenuncia");
       $sql->bindValue(':iddenuncia', $_GET['iddenuncia']);
       $sql->execute();
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
       exit();
 	  }
     else {
-      //Mostrar lista de post
+      //Mostramos la lista de post
       $sql = $dbConn->prepare("SELECT * FROM denuncia");
       $sql->execute();
       $sql->setFetchMode(PDO::FETCH_ASSOC);
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
 	}
 }
 
-// Crear un nuevo post
+// Creamos un nuevo post
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $input = $_POST;
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       exit();
 	 }
 }
-//Actualizar
+//Actualizamos
 if ($_SERVER['REQUEST_METHOD'] == 'PUT')
 {
     $input = $_GET;
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT')
     exit();
 }
 
-//Borrar
+//Borramos
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
 {
 	$id = $_GET['iddenuncia'];

@@ -1,12 +1,12 @@
 <?php
 
-  //Abrir conexion a la base de datos
+  //Abrimos la conexion a la BD
   function connect($db)
   {
       try {
           $conn = new PDO("mysql:host={$db['host']};dbname={$db['db']}", $db['username'], $db['password']);
 
-          // set the PDO error mode to exception
+          
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
           return $conn;
@@ -16,7 +16,7 @@
   }
 
 
- //Obtener parametros para updates
+ //Obtenemos parametros para updates
  function getParams($input)
  {
     $filterParams = [];
@@ -27,7 +27,7 @@
     return implode(", ", $filterParams);
 	}
 
-  //Asociar todos los parametros a un sql
+  //Asociamos todos los parametros a un sql
 	function bindAllValues($statement, $params)
   {
 		foreach($params as $param => $value)
